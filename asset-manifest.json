@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/https//Nidhish-Dev.github.io/Chatify/static/css/main.1a34968f.css",
+    "main.js": "/https//Nidhish-Dev.github.io/Chatify/static/js/main.06a15327.js",
+    "static/js/787.c0fbf7b0.chunk.js": "/https//Nidhish-Dev.github.io/Chatify/static/js/787.c0fbf7b0.chunk.js",
+    "index.html": "/https//Nidhish-Dev.github.io/Chatify/index.html",
+    "main.1a34968f.css.map": "/https//Nidhish-Dev.github.io/Chatify/static/css/main.1a34968f.css.map",
+    "main.06a15327.js.map": "/https//Nidhish-Dev.github.io/Chatify/static/js/main.06a15327.js.map",
+    "787.c0fbf7b0.chunk.js.map": "/https//Nidhish-Dev.github.io/Chatify/static/js/787.c0fbf7b0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1a34968f.css",
+    "static/js/main.06a15327.js"
+  ]
+}
