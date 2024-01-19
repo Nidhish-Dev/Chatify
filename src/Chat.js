@@ -1,4 +1,3 @@
-// src/Chat.js
 import React, { useEffect, useState, useRef } from 'react';
 import { auth, database } from './firebase';
 import {
@@ -9,7 +8,7 @@ import {
 } from 'firebase/auth';
 import { getDatabase, ref, push, onValue, off, set } from 'firebase/database';
 
-import './Chat.css'; // Import the styles
+import './Chat.css';
 
 function Chat() {
   const [user, setUser] = useState(null);
@@ -29,15 +28,21 @@ function Chat() {
       }
     };
 
-    onValue(messagesRef, fetchMessages);
-
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
       setUser(user);
+
+      if (user) {
+        // Fetch messages only if the user is logged in
+        onValue(messagesRef, fetchMessages);
+      } else {
+        // Clear messages if the user is logged out
+        setMessages([]);
+      }
     });
 
     return () => {
       off(messagesRef, 'value', fetchMessages);
-      unsubscribe();
+      unsubscribeAuth();
     };
   }, []);
 
@@ -55,11 +60,9 @@ function Chat() {
   const handleScroll = () => {
     const container = messagesContainerRef.current;
 
-    // Calculate whether the user is at the bottom of the scrollable container
     const isAtBottom =
       container.scrollHeight - container.scrollTop === container.clientHeight;
 
-    // If the user is at the bottom, scroll to the bottom automatically
     if (isAtBottom) {
       scrollToBottom();
     }
@@ -124,14 +127,14 @@ function Chat() {
         ))}
       </div>
       <div className="input-container">
-        <input 
-        placeholder='Type message here'
+        <input
+          placeholder="Type message here"
           type="text"
-          className='msg'
+          className="msg"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button onClick={sendMessage} className='send' disabled={!user}>
+        <button onClick={sendMessage} className="send" disabled={!user}>
           Send
         </button>
       </div>
